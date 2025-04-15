@@ -1,0 +1,18 @@
+<div class=" row g-3 mb-3">
+    <div class="col-md-4">
+        <label for="" class="form-label">Name</label>
+        <input type="text" name="name" class="form-control" value="{{student.name if student else ''}}">
+    </div>
+    <div class="col-md-4">
+        <label for="" class="form-label">Email</label>
+        <input type="text" name="email" class="form-control" value="{{student.email if student else ''}}">
+    </div>
+    <div class="col-md-4">
+        <label for="" class="form-label">Program</label>
+        <input type="text" name="program" class="form-control" value="{{student.program if student else ''}}">
+    </div>
+    <div class="col-md-4">
+        <label for="" class="form-label">Enrollment Date</label>
+        <input type="text" name="enrollment_date" class="form-control" value="{{student.enrollment_date if student else ''}}">
+    </div>
+</div>

@@ -1,0 +1,15 @@
+from flask import Flask, render_template
+from controllers.create_student_controller import create_bp
+from controllers.read_student_controller import read_bp
+
+# initialize flask web app
+app = Flask(__name__)
+
+app.register_blueprint(create_bp)
+app.register_blueprint(read_bp)
+
+# required for flashing messages
+app.secret_key="your-secret-key"
+
+if __name__ == "__main__":
+    app.run(debug=True)
