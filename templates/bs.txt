@@ -1,0 +1,22 @@
+<!-- <div class="container">
+                        <div class="row mb-2">
+                          <div class="col-sm-4 fw-bold">Name:</div>
+                          <div class="col-sm-8">{{student.name}}</div>
+                        </div>
+                        <div class="row mb-2">
+                          <div class="col-sm-4 fw-bold">Email:</div>
+                          <div class="col-sm-8">{{student.email}}</div>
+                        </div>
+                        <div class="row mb-2">
+                          <div class="col-sm-4 fw-bold">Program:</div>
+                          <div class="col-sm-8">{{student.program}}</div>
+                        </div>
+                        <div class="row mb-2">
+                          <div class="col-sm-4 fw-bold">Enrollment Date:</div>
+                          <div class="col-sm-8">{{student.enrollment_date}}</div>
+                        </div>
+                        <div class="row mb-2">
+                          <div class="col-sm-4 fw-bold">Created At:</div>
+                          <div class="col-sm-8">{{student.created_at}}</div>
+                        </div>
+                      </div> -->

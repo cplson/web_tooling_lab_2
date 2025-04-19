@@ -47,6 +47,7 @@
         </div>
     </div>
 
+
     <h3>Student List</h3>
     <table class="table table-bordered table-striped" id="studentTable">
         <thead>
@@ -63,6 +64,8 @@
                 <td>{{ student.enrollment_date }}</td>
                 <td>{{ student.created_at }}</td>
                 <td>
+                    <!-- Details Trigger -->
+
                     <!-- Edit Trigger -->
                     <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editModal{{ student._id }}">Edit</button>
                     <!-- Delete Trigger -->
