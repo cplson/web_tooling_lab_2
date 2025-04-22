@@ -47,6 +47,33 @@
         </div>
     </div>
 
+     <!--  Update Modal-->
+ {% for student in students %}
+ <div class="modal fade" id="editModal{{student._id}}" tabindex="-1">
+     <div class="modal-dialog modal-lg">
+         <div class="modal-content">
+             <form method="post" action="/update/{{student._id}}" enctype="multipart/form-data">
+                 <div class="modal-header">
+                     <H5 class="modal-title">Edit Student</H5>
+                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                 </div>
+                 <div class="modal-body">
+                    {% if errors and not student %}
+                    <div class="alert alert-danger"><ul>{% for error in errors %}<li>{{ error }}</li>{% endfor %}</ul></div>
+                    {% endif %}
+                    {% include 'form_fields.html' %}
+                 </div>
+                 <div class="modal-footer">
+                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                     <button type="submit" class="btn btn-success">Update</button>
+                 </div>
+             </form>
+         </div>
+     </div>
+ </div>
+ {% endfor %}
+ <!-- End Update Modal-->
+
 
     <h3>Student List</h3>
     <table class="table table-bordered table-striped" id="studentTable">
