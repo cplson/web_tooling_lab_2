@@ -74,6 +74,30 @@
  {% endfor %}
  <!-- End Update Modal-->
 
+  <!-- Delete Modal-->
+  {% for student in students %}
+  <div class="modal fade" id="deleteModal{{student._id}}" tabindex="-1">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <form method="post" action="/delete/{{student._id}}">
+                  <div class="modal-header">
+                      <h5 class="modal-title">Confirm Delete</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                  </div>
+                  <div class="modal-body">
+                      Are You sure you want to Delete <strong>{{student.name}}</strong>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                      <button type="submit" class="btn btn-danger">Delete</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+  {% endfor %}
+ <!-- End Delete Modal-->
+
 
     <h3>Student List</h3>
     <table class="table table-bordered table-striped" id="studentTable">

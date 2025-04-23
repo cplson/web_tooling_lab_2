@@ -22,8 +22,8 @@ def add_student(data):
     print("Received data:", data)
     return collection.insert_one(data)
 
-# def delete_student(student_id):
-#     return collection.delete_one({"_id": ObjectId(student_id)})
+def delete_student(student_id):
+    return collection.delete_one({"_id": ObjectId(student_id)})
 
 def update_student(student_id, data):
     print("data", data)
