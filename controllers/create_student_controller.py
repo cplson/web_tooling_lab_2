@@ -8,6 +8,11 @@ import re
 # Create a blueprint for the 'create' functionality
 create_bp = Blueprint('create_student', __name__)
 
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 #Input validation function
 def validate_input(data):
     errors = []
@@ -35,13 +40,23 @@ def add_student_route():
     # Validate input data
     errors = validate_input(student_data)
 
+    print('Image request in create controller: ', request.files.get("image"))
+        #Handle image
+    image_file = request.files.get("image")
+    if image_file and image_file.filename != "":
+        if not allowed_file(image_file.filename):
+            errors.append("Invalid image format. Only png, jpg are allowed.")
+    else:
+        image_file = None
+
     # If errors, re-render page with error messages
     if errors:
         students = get_all_students()
         return render_template("index.html", students=students, errors=errors)
 
     # Add student to database
-    add_student(student_data)
+    print('Image file in create controller: ', image_file)
+    add_student(student_data, image_file)
     flash("Student added successfully!","success" )
     # Redirect to main page after success
     return redirect(url_for("read_student.index"))

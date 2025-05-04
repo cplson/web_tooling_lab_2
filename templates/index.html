@@ -27,7 +27,7 @@
     <div class="modal fade {% if errors and not student %}show{% endif %}" id="addStudentModal" tabindex="-1" aria-labelledby="addStudentModalLabel" aria-hidden="{% if errors and not student %}false{% else %}true{% endif %}" style="{% if errors and not student %}display:block; background:rgba(0,0,0,0.5);{% endif %}">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <form method="POST" action="/add_student">
+                <form method="POST" action="/add_student" enctype="multipart/form-data">
                     <div class="modal-header">
                         <h5 class="modal-title" id="addStudentModalLabel">Add Student</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
@@ -103,12 +103,19 @@
     <table class="table table-bordered table-striped" id="studentTable">
         <thead>
             <tr>
-                <th>Name</th><th>Email</th><th>Program</th><th>Enrollment Date</th><th>Created At</th><th>Actions</th>
+                <th>Image</th><th>Name</th><th>Email</th><th>Program</th><th>Enrollment Date</th><th>Created At</th><th>Actions</th>
             </tr>
         </thead>
         <tbody>
             {% for student in students %}
             <tr>
+                <td>
+                    {% if student.image_id %}
+                    <img src="/image/{{ student.image_id }}" width="50">
+                    {% else %}
+                    No image
+                    {% endif %}
+                </td>
                 <td>{{ student.name }}</td>
                 <td>{{ student.email }}</td>
                 <td>{{ student.program }}</td>

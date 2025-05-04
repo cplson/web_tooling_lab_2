@@ -2,7 +2,7 @@
 
 from flask import Blueprint, request, redirect, url_for, render_template, flash
 
-# from controllers.create_student_controller import allowed_file
+from controllers.create_student_controller import allowed_file
 from models.student_model import update_student, get_all_students
 import re
 
@@ -10,7 +10,7 @@ import re
 update_bp = Blueprint('update_student', __name__)
 
 
-# ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 #Input validation function
 def validate_input(data):
@@ -37,26 +37,23 @@ def update_student_route(id):
         "enrollment_date": request.form.get("enrollment_date")
     }
 
-    print(id, update_data)
     # Validate input
     errors = validate_input(update_data)
 
-    # #Handle image
-    # image_file = request.files.get("image")
-    # if image_file and image_file.filename != "":
-    #     if not allowed_file(image_file.filename):
-    #         errors.append("Invalid image format. Only png, jpg are allowed.")
-    # else:
-    #     image_file = None
+    #Handle image
+    image_file = request.files.get("image")
+    if image_file and image_file.filename != "":
+        if not allowed_file(image_file.filename):
+            errors.append("Invalid image format. Only png, jpg are allowed.")
+    else:
+        image_file = None
 
     # If validation fails, return to form with errors
     if errors:
-        print('there are errors')
-        print(errors)
         students = get_all_students()
         update_data["_id"] = id
         return render_template("index.html", students=students, errors=errors, student=update_data)
 
-    update_student(id, update_data)
+    update_student(id, update_data, image_file)
     flash("Student updated successfully!","success" )
     return redirect(url_for("read_student.index"))
